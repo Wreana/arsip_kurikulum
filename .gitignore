@@ -1,0 +1,67 @@
+======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# ======================
+# Virtual Environments
+# ======================
+env/
+venv/
+.venv/
+
+# ======================
+# Django
+# ======================
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Migrations (keep __init__.py)
+**/migrations/
+!**/migrations/__init__.py
+
+# Media uploads (user data)
+media/
+kurikulum/
+scripts/
+
+# Static files (if generated)
+staticfiles/
+
+# ======================
+# Packaging / Distribution
+# ======================
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ======================
+# IDE / OS
+# ======================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ======================
+# Environment variables / secrets
+# ======================
+.env
+.env.*
+
