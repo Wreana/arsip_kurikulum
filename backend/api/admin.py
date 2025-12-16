@@ -22,7 +22,12 @@ class MateriAdmin(ImportExportModelAdmin):
 
 @admin.register(models.MateriItem)
 class MateriItemAdmin(ImportExportModelAdmin):
-    list_display = ("id", "nama", "materi_id", "qc_approve", "flow_number")
+    list_display = (
+        "id",
+        "nama",
+        "materi_id",
+        "qc_approve",
+    )
     list_filter = ("qc_approve",)
     search_fields = (
         "nama",

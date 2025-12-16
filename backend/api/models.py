@@ -15,7 +15,7 @@ class Materi(models.Model):
         Kurikulum, on_delete=models.CASCADE, blank=True, null=True
     )
     nama = models.CharField(max_length=255, blank=True, null=True)
-    flow_number = models.IntegerField(blank=True, null=True)
+    flow_number = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -29,7 +29,6 @@ class MateriItem(models.Model):
     qc_approve = models.BooleanField(default=False)
     nama = models.CharField(max_length=255, blank=True, null=True)
     deskripsi = models.TextField(blank=True, null=True)
-    flow_number = models.IntegerField(blank=True, null=True)
     module_qc = models.FileField(upload_to="kurikulum/module/", blank=True, null=True)
     module_qc_pdf = models.FileField(
         upload_to="kurikulum/module/", blank=True, null=True
