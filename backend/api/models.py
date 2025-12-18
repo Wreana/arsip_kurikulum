@@ -32,7 +32,6 @@ class Kelas(models.Model):
 
 class Fase(models.Model):
     fase = models.CharField(max_length=255, blank=True, null=True, unique=True)
-    kelas_id = models.ForeignKey(Kelas, on_delete=models.CASCADE, blank=True, null=True)
     deskripsi = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
@@ -65,30 +64,30 @@ class Element(models.Model):
         return self.nama
 
 
-class TujuanPembelajaran(models.Model):
+class Materi(models.Model):
+    kelas_id = models.ForeignKey(Kelas, on_delete=models.CASCADE, blank=True, null=True)
+    fase_id = models.ForeignKey(Fase, on_delete=models.CASCADE, blank=True, null=True)
+    bahasa_pemrograman = models.CharField(
+        max_length=255, choices=BAHASA_PEMROGRAMAN_CHOICES, blank=True, null=True
+    )
+    jp = models.IntegerField(default=2, blank=True, null=True)
     nama = models.CharField(max_length=255, blank=True, null=True)
-    flow_number = models.CharField(max_length=255, blank=True, null=True)
+    rpp = models.FileField(upload_to="kurikulum/rpp/", blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.nama
 
 
-class Materi(models.Model):
-    tujuan_pembelajaran_id = models.ManyToManyField(
-        TujuanPembelajaran, blank=True, null=True, related_name="materi_set"
-    )
-    kurikulum_id = models.ForeignKey(
+class TujuanPembelajaran(models.Model):
+    kurikulum = models.ForeignKey(
         Kurikulum, on_delete=models.CASCADE, blank=True, null=True
     )
-    bahasa_pemrograman = models.CharField(
-        max_length=255, choices=BAHASA_PEMROGRAMAN_CHOICES, blank=True, null=True
-    )
-    kelas_id = models.ForeignKey(Kelas, on_delete=models.CASCADE, blank=True, null=True)
-    jp = models.IntegerField(default=2, blank=True, null=True)
-    fase_id = models.ForeignKey(Fase, on_delete=models.CASCADE, blank=True, null=True)
     nama = models.CharField(max_length=255, blank=True, null=True)
-    rpp = models.FileField(upload_to="kurikulum/rpp/", blank=True, null=True)
+    flow_number = models.CharField(max_length=255, blank=True, null=True)
+    materi_id = models.ManyToManyField(
+        Materi, blank=True, null=True, related_name="tp_materiSet"
+    )
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
