@@ -12,7 +12,11 @@ class KurikulumAdmin(ImportExportModelAdmin):
 
 @admin.register(models.Materi)
 class MateriAdmin(ImportExportModelAdmin):
-    list_display = ("id", "nama", "kurikulum_id", "flow_number")
+    list_display = (
+        "id",
+        "nama",
+        "kurikulum_id",
+    )
     search_fields = (
         "nama",
         "kurikulum_id__nama",
@@ -47,6 +51,64 @@ class MateriItemVideoAdmin(ImportExportModelAdmin):
     )
     search_fields = (
         "materi_item_id__nama",
+        "id",
+    )
+    ordering = ("created_at",)
+
+
+@admin.register(models.Fase)
+class FaseAdmin(ImportExportModelAdmin):
+    list_display = (
+        "id",
+        "fase",
+    )
+    search_fields = (
+        "fase",
+        "id",
+    )
+    ordering = ("created_at",)
+
+
+@admin.register(models.TujuanPembelajaran)
+class TujuanPembelajaranAdmin(ImportExportModelAdmin):
+    list_display = (
+        "id",
+        "nama",
+    )
+    search_fields = (
+        "nama",
+        "id",
+    )
+    ordering = ("created_at",)
+
+
+@admin.register(models.Kelas)
+class KelasAdmin(ImportExportModelAdmin):
+    list_display = (
+        "kelas",
+        "jenjang",
+        "id",
+    )
+    search_fields = (
+        "kelas",
+        "jenjang",
+        "id",
+    )
+    ordering = ("created_at",)
+
+
+@admin.register(models.Element)
+class ElementAdmin(ImportExportModelAdmin):
+    list_display = (
+        "nama",
+        "deskripsi",
+        "kurikulum_id",
+        "id",
+    )
+    search_fields = (
+        "nama",
+        "deskripsi",
+        "kurikulum_id__nama",
         "id",
     )
     ordering = ("created_at",)
